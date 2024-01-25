@@ -1,0 +1,27 @@
+# Ignore Gradle and Android Studio files in Android project
+*.iml
+AndroidPortfolio/.gradle/
+AndroidPortfolio/local.properties
+AndroidPortfolio/.idea/
+AndroidPortfolio/.cxx/
+AndroidPortfolio/build/
+AndroidPortfolio/captures/
+
+# Ignore Flutter files
+portfolio_flutter/dart_tool/
+portfolio_flutter/idea/
+portfolio_flutter/flutter-plugins
+portfolio_flutter/flutter-plugins-dependencies
+portfolio_flutter/build/
+portfolio_flutter/packages
+portfolio_flutter/pub-cache/
+portfolio_flutter/pub/
+
+# Ignore Xcode files in iOS project
+iosMovie/Pods/
+iosMovie/Podfile.lock
+iosMovie/xcuserdata/
+iosMovie/*.xcodeproj/
+*.xcworkspace/
+*.xcuserdatad/
+

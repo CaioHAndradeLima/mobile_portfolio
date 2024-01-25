@@ -17,7 +17,7 @@ I really need organize better the code, move the hard code strings to right plac
 
 ## Show me the code
 
-[Flutter](#/portfolio_flutter/)<p>
+[Flutter](https://github.com/CaioHAndradeLima/mobile_portfolio/tree/main/portfolio_flutter)<p>
 Dart - Material <b>3</b> - MultiPlataform Adaptation - Flutter_Bloc - Cached Network Image - Palette Generator
 
 [Native Android](https://github.com/CaioHAndradeLima/mobile_portfolio/tree/main/AndroidPortfolio)<p>

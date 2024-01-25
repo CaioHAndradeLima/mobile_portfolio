@@ -20,8 +20,7 @@ I really need organize better the code, move the hard code strings to right plac
 [Flutter](#/portfolio_flutter/)<p>
 Dart - Material <b>3</b> - MultiPlataform Adaptation - Flutter_Bloc - Cached Network Image - Palette Generator
 
-
-[Native Android](#AndroidPortfolio/)<p>
+[Native Android](https://github.com/CaioHAndradeLima/mobile_portfolio/tree/main/AndroidPortfolio)<p>
 Kotlin - Material <b>3</b> - Jetpack Navigation - Jetpack Compose - Retrofit - Gson
 
 [Native iOS](#iosMovie)<p>

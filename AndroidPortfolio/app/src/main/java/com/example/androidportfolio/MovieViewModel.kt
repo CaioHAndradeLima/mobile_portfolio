@@ -36,7 +36,7 @@ class MovieViewModel @Inject constructor() : ViewModel() {
                 ++page
                 _moviesState.value = MovieState.Loaded(listMovies!!)
             } else if(listMovies == null) {
-                _moviesState.value = MovieState.Error("Erro ao carregar filmes")
+                _moviesState.value = MovieState.Error("Network error")
             }
         }
     }

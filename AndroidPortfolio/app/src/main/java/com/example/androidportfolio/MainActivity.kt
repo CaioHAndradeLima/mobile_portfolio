@@ -64,6 +64,7 @@ import com.example.androidportfolio.ui.theme.AndroidPortfolioTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import androidx.navigation.compose.rememberNavController
+import com.example.androidportfolio.ui.theme.colorScheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -200,7 +201,7 @@ fun MovieListScreen(navController: NavHostController, viewModel: MovieViewModel)
                                     viewModel.fetchMovies()
                                 })
                     } else {
-                        Text("Nenhum filme encontrado")
+                        Text("Not found movies")
                     }
                 }
 
@@ -208,7 +209,7 @@ fun MovieListScreen(navController: NavHostController, viewModel: MovieViewModel)
                     viewModel.fetchMovies()
                 }
 
-                else -> Text("Erro ao carregar filmes")
+                else -> Text("Network error")
             }
         }
     )
@@ -231,11 +232,11 @@ fun ErrorScreen(errorMessage: String, onRetry: () -> Unit) {
         Spacer(modifier = Modifier.height(20.dp))
         Button(
             onClick = { onRetry() },
-            colors = ButtonDefaults.buttonColors(containerColor = Color.Blue),
-            contentPadding = PaddingValues(16.dp)
+            colors = ButtonDefaults.buttonColors(containerColor = colorScheme.primary),
+            contentPadding = PaddingValues(horizontal = 36.dp, vertical = 4.dp)
         ) {
             Text(
-                text = "Tentar Novamente",
+                text = "Try Again",
                 style = TextStyle(color = Color.White, fontSize = 16.sp)
             )
         }
@@ -249,7 +250,7 @@ fun LoadingScreen() {
         contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator(
-            color = Color.Blue,
+            color = colorScheme.primary,
             strokeWidth = 3.dp
         )
     }

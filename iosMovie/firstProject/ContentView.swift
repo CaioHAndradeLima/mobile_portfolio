@@ -1,16 +1,20 @@
 
 import SwiftUI
 import Foundation
+import CachedAsyncImage
 
 struct ContentView: View {
     @ObservedObject var viewModel = MoviesViewModel()
-    @Namespace var namespace
     @State var showingDetail = false
     @State var movieSelected: MovieItem?
+    @Namespace var namespace
     
     var body: some View {
         NavigationView {
             ZStack {
+                if(showingDetail && movieSelected != nil) {
+                    MovieDetailItem(movieSelected: movieSelected!, namespace: namespace, showingDetail: $showingDetail)
+                }
                 
                 if viewModel.isLoading {
                     ProgressView("Loading movies...").onAppear {
@@ -27,26 +31,33 @@ struct ContentView: View {
                     List(viewModel.movies ?? []) { movie in
                         HStack {
                             VStack {
-                                AsyncImage(url: URL(string: "http://image.tmdb.org/t/p/w500" + movie.poster_path)) { phase in
-                                    switch phase {
-                                    case .empty: ZStack {
-                                        
-                                        ProgressView()
-                                    }
-                                    case .success: phase.image?
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame(height: 200)
-                                    default: ProgressView()
-                                    }
+                                
+                                if(!(showingDetail && movieSelected != nil)) {
                                     
-                                }.matchedGeometryEffect(id: movie.poster_path, in: namespace)
-                            }
+                                    CachedAsyncImage(url: URL(string: "http://image.tmdb.org/t/p/w500" + movie.poster_path)) { phase in
+                                        switch phase {
+                                        case .empty:
+                                             ZStack {
+                                                 ProgressView()
+                                             }
+                                        case .success: phase.image?
+                                                        .resizable()
+                                                        .aspectRatio(contentMode: .fit)
+                                                        .frame(width: 120, height: 120 * 1.36)
+                                            
+                                            
+                                        default: ProgressView()
+                                        }
+                                        
+                                    }.matchedGeometryEffect(id: movie.poster_path, in: namespace)
+                                }
+                            }.frame(width: 120)
                             VStack(alignment: .leading) {
                                 Text(movie.title)
                                     .font(.headline)
                                 Text(movie.overview)
                                     .font(.subheadline)
+                                    .lineLimit(7)
                             }
                         }.onTapGesture {
                             withAnimation {
@@ -59,10 +70,6 @@ struct ContentView: View {
                         .navigationBarHidden(showingDetail)
                 }
                 
-                if(showingDetail && movieSelected != nil) {
-                    MovieDetailItem(movieSelected: movieSelected!, namespace: namespace, showingDetail: $showingDetail)
-                }
-
             }
         }
     }
@@ -70,72 +77,95 @@ struct ContentView: View {
 }
 
 
+
 struct MovieDetailItem: View {
     var movieSelected : MovieItem
     var namespace: Namespace.ID
     @Binding var showingDetail: Bool
     @State private var isNavigationBarHidden = true
+        
+    let gradient = LinearGradient(
+        gradient: Gradient(stops: [
+            .init(color: .clear, location: 0.8),
+            .init(color: .gray, location: 0.90),
+
+        ]),
+        startPoint: .top,
+        endPoint: .bottom
+    )
     
+
+
     var body: some View {
         NavigationView {
-            
             GeometryReader { geometry in
                 ScrollView {
                     VStack(alignment: .leading) {
                         
-                        AsyncImage(url: URL(string: "http://image.tmdb.org/t/p/w500" + movieSelected.poster_path)) { phase in
+                        CachedAsyncImage(url: URL(string: "http://image.tmdb.org/t/p/w500" + movieSelected.poster_path)) { phase in
                             switch phase {
-                            case .empty:
-                                ZStack {
-                                    Image(systemName: "questionmark")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(height: 450)
-                                        .frame(maxWidth: .infinity)
-                                    
-                                    ProgressView()
-                                }
                             case .success:
-                                phase.image?
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(height: 450)
-                                    .frame(maxWidth: .infinity)
+                                ZStack {
+                                    phase.image?
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: UIScreen.main.bounds.width, height:  UIScreen.main.bounds.width * 1.1)
+                                        .overlay(
+                                            ZStack(alignment: .bottom) {
+                                                CachedAsyncImage(url: URL(string: "http://image.tmdb.org/t/p/w500" + movieSelected.poster_path)) { phase in
+                                                    if(phase.image != nil) {
+                                                        phase.image!
+                                                            .aspectRatio(contentMode: .fill)
+                                                            .blur(radius: 20)
+                                                            .mask(gradient)
+                                                            .frame(width: UIScreen.main.bounds.width, height:  UIScreen.main.bounds.width * 1.1)
+
+                                                    }
+                                                }
+                                            }
+                                        )
+
+
+                                }
+                                .frame(height: UIScreen.main.bounds.width * 1.1)
                             default:
-                                Image(systemName: "questionmark")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(height: 450)
-                                    .frame(maxWidth: .infinity)
+                                ProgressView()
                             }
                         }.matchedGeometryEffect(id: movieSelected.poster_path, in: namespace)
                     }
-                    VStack(alignment: .leading) {
+                    
+                    ZStack(alignment: .topLeading) {
+                            
+                            CachedAsyncImage(url: URL(string: "http://image.tmdb.org/t/p/w500" + movieSelected.poster_path)) { phase in
+                                if(phase.image != nil) {
+                                    phase.image!
+                                        .aspectRatio(contentMode: .fill)
+                                        .blur(radius: 20)
+                                        .frame(width: UIScreen.main.bounds.width, height:  UIScreen.main.bounds.height * 0.8)
+                                    
+                                }
+                            }
+
+                            RoundedRectangle(cornerRadius: 0)
+                                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.8)
+                                    .foregroundStyle(.ultraThinMaterial)
+                                    .opacity(0.75)
+
                         
-                        Text(movieSelected.title)
-                            .padding(.top, 100)
-                            .font(.headline)
-                        Text(movieSelected.overview)
-                            .font(.subheadline)
-                        Text(movieSelected.overview)
-                            .font(.subheadline)
-                        Text(movieSelected.overview)
-                            .font(.subheadline)
-                        Text(movieSelected.overview)
-                            .font(.subheadline)
-                        Text(movieSelected.overview)
-                            .font(.subheadline)
-                        Text(movieSelected.overview)
-                            .font(.subheadline)
-                        Text(movieSelected.overview)
-                            .font(.subheadline)
-                        Text(movieSelected.overview)
-                            .font(.subheadline)
-                        Text(movieSelected.overview)
-                            .font(.subheadline)
-                        
+                        VStack(alignment: .leading) {
+                            Text(movieSelected.title)
+                                .font(.title)
+                                .padding(.bottom, 5)
+
+                            Text(movieSelected.overview)
+                                .font(.subheadline)
+                        }
+                        .padding(20)
                     }
+                    .frame(width: UIScreen.main.bounds.width, height:  UIScreen.main.bounds.height * 0.5)
+
                 }
             }
+            
             .navigationBarTitle(movieSelected.title)
             .background(NavigationConfigurator { nc in
                 nc.setNavigationBarHidden(isNavigationBarHidden, animated: true)
@@ -168,26 +198,3 @@ struct NavigationConfigurator: UIViewControllerRepresentable {
 }
 
 
-struct OffsetPreferenceKey: PreferenceKey {
-    static var defaultValue: CGFloat = 0
-    
-    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-        value = nextValue()
-    }
-}
-
-
-extension UIImage {
-    func getPixelColor(pos: CGPoint) -> UIColor {
-        if let cgImage = self.cgImage, let pixelData = cgImage.dataProvider?.data {
-            let data: UnsafePointer<UInt8> = CFDataGetBytePtr(pixelData)
-            let pixelInfo: Int = ((Int(self.size.width) * Int(pos.y)) + Int(pos.x)) * 4
-            let r = CGFloat(data[pixelInfo]) / CGFloat(255.0)
-            let g = CGFloat(data[pixelInfo+1]) / CGFloat(255.0)
-            let b = CGFloat(data[pixelInfo+2]) / CGFloat(255.0)
-            let a = CGFloat(data[pixelInfo+3]) / CGFloat(255.0)
-            return UIColor(red: r, green: g, blue: b, alpha: a)
-        }
-        return .clear
-    }
-}

@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import SwiftUI
 
 class MovieRepository {
     func fetchMovies(completion: @escaping ([MovieItem]?) -> Void) {

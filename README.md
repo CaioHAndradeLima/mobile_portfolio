@@ -15,16 +15,15 @@ This project is implemented in different languages: Flutter, Native Android, and
 The mainly goal is demonstrate my software knowledge and <b>how I handle with challenges using any different software development environments.</b>
 I really need organize better the code, move the hard code strings to right place, etc. Im working on it.
 
-## Show me the code
 
-[Flutter](https://github.com/CaioHAndradeLima/mobile_portfolio/tree/main/portfolio_flutter)<p>
-Dart - Material <b>3</b> - MultiPlataform Adaptation - Flutter_Bloc - Cached Network Image - Palette Generator
+<h1>Native Experience for native applications</h1>
 
-[Native Android](https://github.com/CaioHAndradeLima/mobile_portfolio/tree/main/AndroidPortfolio)<p>
-Kotlin - Material <b>3</b> - Jetpack Navigation - Jetpack Compose - Retrofit - Gson
+https://github.com/CaioHAndradeLima/mobile_portfolio/assets/29280775/e2570626-7cd5-49b5-9a90-8cf695b4d944
 
-[Native iOS](https://github.com/CaioHAndradeLima/mobile_portfolio/tree/main/iosMovie)<p>
-Swift UI - Alamofire - Foundation
+<h1> Flutter Experience like Native experience </h1>
+
+https://github.com/CaioHAndradeLima/mobile_portfolio/assets/29280775/fef712f1-9269-48fc-a675-34b7d8e6ced2
+
 
 
 
@@ -40,6 +39,18 @@ Swift UI - Alamofire - Foundation
 | Detail Screen<p>Background animated| ✓          | ✘                                 | ✘                        |
 | Unit Tests              | ✘                     | ✘                                 | ✘                        |
 | UI Tests                | ✘                     | ✘                                 | ✘                        |
+
+
+## Show me the code
+
+[Flutter](https://github.com/CaioHAndradeLima/mobile_portfolio/tree/main/portfolio_flutter)<p>
+Dart - Material <b>3</b> - MultiPlataform Adaptation - Flutter_Bloc - Cached Network Image - Palette Generator
+
+[Native Android](https://github.com/CaioHAndradeLima/mobile_portfolio/tree/main/AndroidPortfolio)<p>
+Kotlin - Material <b>3</b> - Jetpack Navigation - Jetpack Compose - Retrofit - Gson
+
+[Native iOS](https://github.com/CaioHAndradeLima/mobile_portfolio/tree/main/iosMovie)<p>
+Swift UI - Alamofire - Foundation
 
 </body>
 </html>

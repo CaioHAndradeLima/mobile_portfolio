@@ -36,7 +36,7 @@ https://github.com/CaioHAndradeLima/mobile_portfolio/assets/29280775/fef712f1-92
 | Transition Animation    | ✓                     | ✘                                 | ✓                        |
 | Image Internal Cache    | ✓                     | ✘                                 | ✘                        |
 | Inject Dependency       | Bloc                  | ✓ Hilt                            | ✘                        |
-| Detail Screen<p>Background animated| ✓          | ✘                                 | ✘                        |
+| Detail Screen<p>Background animated| ✓          | ✘                                 | ✓                        |
 | Unit Tests              | ✘                     | ✘                                 | ✘                        |
 | UI Tests                | ✘                     | ✘                                 | ✘                        |
 

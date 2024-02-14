@@ -6,6 +6,21 @@
 </head>
 <body>
 
+## Flutter
+
+| Feature/Project         |  [Flutter](#portfolio_flutter)  | [Native Android](#AndroidPortfolio) | [Native iOS](#iosMovie)
+|-------------------------|-----------------------|-----------------------------------|--------------------------|
+| Infinite Scroll         | ✓                     | ✓                                 | ✓                        |
+| Detail Screen           | ✓                     | ✓                                 | ✓                        |
+| Transition Animation    | ✓                     | ✘                                 | ✓                        |
+| Image Internal Cache    | ✓                     | ✘                                 | ✘                        |
+| Inject Dependency       | Bloc                  | ✓ Hilt                            | ✘                        |
+| Detail Screen<p>Background animated| ✓          | ✘                                 | ✓                        |
+| Unit Tests              | ✘                     | ✘                                 | ✘                        |
+| UI Tests                | ✘                     | ✘                                 | ✘                        |
+
+
+
 # Mobile Portfolio
 
 3 different tecnology mobile movie project app that consumes the Movie TMDB API. 
@@ -23,22 +38,6 @@ https://github.com/CaioHAndradeLima/mobile_portfolio/assets/29280775/e2570626-7c
 <h1> Flutter Experience like Native experience </h1>
 
 https://github.com/CaioHAndradeLima/mobile_portfolio/assets/29280775/fef712f1-9269-48fc-a675-34b7d8e6ced2
-
-
-
-
-## Flutter
-
-| Feature/Project         |  [Flutter](#portfolio_flutter)  | [Native Android](#AndroidPortfolio) | [Native iOS](#iosMovie)
-|-------------------------|-----------------------|-----------------------------------|--------------------------|
-| Infinite Scroll         | ✓                     | ✓                                 | ✓                        |
-| Detail Screen           | ✓                     | ✓                                 | ✓                        |
-| Transition Animation    | ✓                     | ✘                                 | ✓                        |
-| Image Internal Cache    | ✓                     | ✘                                 | ✘                        |
-| Inject Dependency       | Bloc                  | ✓ Hilt                            | ✘                        |
-| Detail Screen<p>Background animated| ✓          | ✘                                 | ✓                        |
-| Unit Tests              | ✘                     | ✘                                 | ✘                        |
-| UI Tests                | ✘                     | ✘                                 | ✘                        |
 
 
 ## Show me the code
